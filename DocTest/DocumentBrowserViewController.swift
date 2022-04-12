@@ -31,13 +31,23 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     // MARK: UIDocumentBrowserViewControllerDelegate
     
     func documentBrowser(_ controller: UIDocumentBrowserViewController, didRequestDocumentCreationWithHandler importHandler: @escaping (URL?, UIDocumentBrowserViewController.ImportMode) -> Void) {
-        let newDocumentURL: URL? = nil
         
-        // Set the URL for the new document here. Optionally, you can present a template chooser before calling the importHandler.
-        // Make sure the importHandler is always called, even if the user cancels the creation request.
-        if newDocumentURL != nil {
-            importHandler(newDocumentURL, .move)
-        } else {
+        let fileURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?
+            .appendingPathComponent("Document")
+            .appendingPathExtension("doctest")
+        
+        guard let url = fileURL else {
+            importHandler(nil, .none)
+            return
+        }
+
+        // Remove old empty document file is one exists
+        try? FileManager.default.removeItem(at: url)
+
+        do {
+            try Document.new(at: url)
+            importHandler(url, .move)
+        } catch {
             importHandler(nil, .none)
         }
     }
@@ -62,13 +72,14 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     // MARK: Document Presentation
     
     func presentDocument(at documentURL: URL) {
+        let document = Document(fileURL: documentURL)
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let documentViewController = storyBoard.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
-        documentViewController.document = Document(fileURL: documentURL)
-        documentViewController.modalPresentationStyle = .fullScreen
+        let documentViewController = DocumentViewController(document: document)
         
-        present(documentViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: documentViewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        present(navigationController, animated: true, completion: nil)
     }
 }
 
