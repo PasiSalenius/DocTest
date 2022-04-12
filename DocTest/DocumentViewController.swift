@@ -56,9 +56,9 @@ class DocumentViewController: UIViewController, UITextViewDelegate {
         document.open(completionHandler: { (success) in
             if success {
                 // Display the content of the document, e.g.:
-                self.textView.text = self.document.string
+                self.textView.text = self.document.text
+                
             } else {
-                print("fail")
                 // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
             }
         })
@@ -73,7 +73,7 @@ class DocumentViewController: UIViewController, UITextViewDelegate {
     // MARK: - Text view delegate
     
     func textViewDidChange(_ textView: UITextView) {
-        document.string = textView.text
+        document.text = textView.text
         document.updateChangeCount(.done)
     }
     
