@@ -74,12 +74,31 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
     func presentDocument(at documentURL: URL) {
         let document = Document(fileURL: documentURL)
         
-        let documentViewController = DocumentViewController(document: document)
+        let transitionController = transitionController(forDocumentAt: documentURL)
+        transitionController.loadingProgress = Progress(totalUnitCount: -1)
+
+        let transitioningDelegate = TransitioningDelegate(withTransitionController: transitionController)
+
+        document.transitioningDelegate = transitioningDelegate
         
-        let navigationController = UINavigationController(rootViewController: documentViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        
-        present(navigationController, animated: true, completion: nil)
+        document.open() { success in
+            transitionController.loadingProgress = nil
+            
+            guard success else {
+                print("Failed to open document")
+                return
+            }
+            
+            let documentViewController = DocumentViewController(document: document)
+
+            let navigationController = UINavigationController(rootViewController: documentViewController)
+            navigationController.modalPresentationStyle = .fullScreen
+            navigationController.transitioningDelegate = transitioningDelegate
+
+            transitionController.targetView = navigationController.view
+            
+            self.present(navigationController, animated: true, completion: nil)
+        }
     }
 }
 

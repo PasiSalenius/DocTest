@@ -26,7 +26,9 @@ class Document: UIDocument {
     private var directoryWrapper: FileWrapper?
 
     var text: String?
-    
+
+    var transitioningDelegate: TransitioningDelegate?
+
     static func new(at fileURL: URL) throws {
         let fileWrapper = FileWrapper(regularFileWithContents: Data())
         fileWrapper.preferredFilename = "document"

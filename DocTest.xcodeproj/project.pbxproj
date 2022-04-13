@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43634DCC2806CF130030A09C /* TransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43634DCB2806CF130030A09C /* TransitionDelegate.swift */; };
 		43BDF1FB28057A38009EEC9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BDF1FA28057A38009EEC9E /* AppDelegate.swift */; };
 		43BDF1FD28057A38009EEC9E /* DocumentBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BDF1FC28057A38009EEC9E /* DocumentBrowserViewController.swift */; };
 		43BDF1FF28057A38009EEC9E /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BDF1FE28057A38009EEC9E /* DocumentViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43634DCB2806CF130030A09C /* TransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDelegate.swift; sourceTree = "<group>"; };
 		43BDF1F728057A38009EEC9E /* DocTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43BDF1FA28057A38009EEC9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43BDF1FC28057A38009EEC9E /* DocumentBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				43BDF1FA28057A38009EEC9E /* AppDelegate.swift */,
 				43BDF1FC28057A38009EEC9E /* DocumentBrowserViewController.swift */,
+				43634DCB2806CF130030A09C /* TransitionDelegate.swift */,
 				43BDF1FE28057A38009EEC9E /* DocumentViewController.swift */,
 				43BDF20028057A38009EEC9E /* Document.swift */,
 				43BDF20228057A38009EEC9E /* Main.storyboard */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43BDF20128057A38009EEC9E /* Document.swift in Sources */,
+				43634DCC2806CF130030A09C /* TransitionDelegate.swift in Sources */,
 				43BDF1FF28057A38009EEC9E /* DocumentViewController.swift in Sources */,
 				43BDF1FD28057A38009EEC9E /* DocumentBrowserViewController.swift in Sources */,
 				43BDF1FB28057A38009EEC9E /* AppDelegate.swift in Sources */,

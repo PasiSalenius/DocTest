@@ -47,21 +47,8 @@ class DocumentViewController: UIViewController, UITextViewDelegate {
             textView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             textView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
         ])
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        // Access the document
-        document.open(completionHandler: { (success) in
-            if success {
-                // Display the content of the document, e.g.:
-                self.textView.text = self.document.text
-                
-            } else {
-                // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
-            }
-        })
+        textView.text = document.text
     }
     
     private func dismissDocumentViewController() {
